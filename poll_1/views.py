@@ -15,6 +15,8 @@ from .models import *
 class MainPageView(TemplateView):
     template_name = 'main_page.html'
 
+class SecondSurvey(TemplateView):
+    template_name = 'quiz_2.html'
 
 class QuestionA(FormView):
     template_name = 'quiz_1_question_1.html'
