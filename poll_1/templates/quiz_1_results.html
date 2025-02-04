@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey 1 Results</title>
+</head>
+<body>
+    <h1>Survey 1 Results</h1>
+
+    {% for question, responses in grouped_responses.items %}
+        <h3>{{ question }}</h3>
+        <ul>
+            {% for response in responses %}
+                <li>{{ response.answer }} - {{ response.count }} selection(s) ({{ response.percentage|floatformat:2 }}%)</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+
+    <a href="{% url 'main_page' %}">Main Page</a>
+</body>
+</html>

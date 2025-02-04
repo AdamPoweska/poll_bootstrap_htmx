@@ -2,10 +2,10 @@ from django import forms
 
 class QuizOneQuestionOne(forms.Form):
     QUESTION_CHOICES = [
-        ('q1', 'Question 1'),
-        ('q2', 'Question 2'),
-        ('q3', 'Question 3'),
-        ('q4', 'Question 4'),
+        ('Answer 1', 'Answer 1'),
+        ('Answer 2', 'Answer 2'),
+        ('Answer 3', 'Answer 3'),
+        ('Answer 4', 'Answer 4'),
     ]
 
     question_one_select = forms.ChoiceField(
@@ -17,10 +17,10 @@ class QuizOneQuestionOne(forms.Form):
 
 class QuizOneQuestionTwo(forms.Form):
     QUESTION_CHOICES = [
-        ('q1', 'Question 5'),
-        ('q2', 'Question 6'),
-        ('q3', 'Question 7'),
-        ('q4', 'Question 8'),
+        ('Answer 5', 'Answer 5'),
+        ('Answer 6', 'Answer 6'),
+        ('Answer 7', 'Answer 7'),
+        ('Answer 8', 'Answer 8'),
     ]
 
     question_two_select = forms.ChoiceField(
@@ -32,10 +32,10 @@ class QuizOneQuestionTwo(forms.Form):
 
 class QuizOneQuestionThree(forms.Form):
     QUESTION_CHOICES = [
-        ('q1', 'Question 9'),
-        ('q2', 'Question 10'),
-        ('q3', 'Question 11'),
-        ('q4', 'Question 12'),
+        ('Answer 9', 'Answer 9'),
+        ('Answer 10', 'Answer 10'),
+        ('Answer 11', 'Answer 11'),
+        ('Answer 12', 'Answer 12'),
     ]
 
     question_three_select = forms.ChoiceField(
