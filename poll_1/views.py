@@ -78,9 +78,9 @@ class SurveyOneResults(ListView):
                 response['percentage'] = (response['count'] / total_responses) * 100
         
         QUESTION_TITLES = {
-            "Question 1": "What is your favorite color?",
-            "Question 2": "How often do you exercise?",
-            "Question 3": "What is your favorite food?"
+            "Question 1": "What do you value most in your work?",
+            "Question 2": "What motivates you to work?",
+            "Question 3": "What would you change in the company?"
         }
 
         renamed_grouped_responses = {}

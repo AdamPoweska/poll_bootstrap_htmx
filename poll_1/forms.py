@@ -2,10 +2,10 @@ from django import forms
 
 class QuizOneQuestionOne(forms.Form):
     QUESTION_CHOICES = [
-        ('Answer 1', 'Answer 1'),
-        ('Answer 2', 'Answer 2'),
-        ('Answer 3', 'Answer 3'),
-        ('Answer 4', 'Answer 4'),
+        ('Answer 1 - Free coffee', 'Answer 1 - Free coffee'),
+        ('Answer 2 - I can sit on a chair', 'Answer 2 - I can sit on a chair'),
+        ('Answer 3 - I have company laptop', 'Answer 3 - I have company laptop'),
+        ('Answer 4 - I do not have to work in rain', 'Answer 4 - I do not have to work in rain'),
     ]
 
     question_one_select = forms.ChoiceField(
@@ -17,10 +17,10 @@ class QuizOneQuestionOne(forms.Form):
 
 class QuizOneQuestionTwo(forms.Form):
     QUESTION_CHOICES = [
-        ('Answer 5', 'Answer 5'),
-        ('Answer 6', 'Answer 6'),
-        ('Answer 7', 'Answer 7'),
-        ('Answer 8', 'Answer 8'),
+        ('Answer 5 - Salary', 'Answer 5 - Salary'),
+        ('Answer 6 - Fruit Thrusday', 'Answer 6 - Fruit Thrusday'),
+        ('Answer 7 - Great mood in workplace', 'Answer 7 - Great mood in workplace'),
+        ('Answer 8 - Feeling of doing important work', 'Answer 8 - Feeling of doing important work'),
     ]
 
     question_two_select = forms.ChoiceField(
@@ -32,10 +32,10 @@ class QuizOneQuestionTwo(forms.Form):
 
 class QuizOneQuestionThree(forms.Form):
     QUESTION_CHOICES = [
-        ('Answer 9', 'Answer 9'),
-        ('Answer 10', 'Answer 10'),
-        ('Answer 11', 'Answer 11'),
-        ('Answer 12', 'Answer 12'),
+        ('Answer 9 - Nothing, company is perfect', 'Answer 9 - Nothing, company is perfect'),
+        ('Answer 10 - Please give me more work and do not increase my pay', 'Answer 10 - Please give me more work and do not increase my pay'),
+        ('Answer 11 - More integrations events', 'Answer 11 - More integrations events'),
+        ('Answer 12 - Please increase my pay', 'Answer 12 - Please increase my pay'),
     ]
 
     question_three_select = forms.ChoiceField(

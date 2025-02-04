@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0">
     <title>Survey 1</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Select One:</h1>
+    <h1>What motivates you to work?</h1>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </body>
 </html>
