@@ -78,7 +78,7 @@
 
 <body>
 
-    <!-- Preloader - Spinner: https://tobiasahlin.com/spinkit/  -->
+    <!-- Spinner: https://tobiasahlin.com/spinkit/  -->
     <div id="loading-indicator" class="sk-cube-grid">
         <div class="sk-cube sk-cube1"></div>
         <div class="sk-cube sk-cube2"></div>
@@ -91,7 +91,15 @@
         <div class="sk-cube sk-cube9"></div>
     </div>
 
-    <!-- Ukryty kontener, który pojawi się po załadowaniu -->
+    <!-- wyświetlanie spinnera przez 10 sekund -->
+    <script>
+        setTimeout(function() { // setTimeout - funkcja w JS opóźnia wykonanie
+            $('#loading-indicator').fadeOut(); // stopniowe zanikanie
+            $('#content').removeClass('d-none').fadeIn(); // 'd-none' = nasze standardowe dane w html poniżej
+        }, 10000); // 1000ms = 1 sekunda
+    </script>
+
+    <!-- wyświetlanie danych -->
     <div id="content" class="d-none">
         <h1>Survey 1 Results</h1>
         {% for question, responses in grouped_responses.items %}
@@ -108,18 +116,7 @@
         </form>
     </div>
 
-    <!-- Skrypt do ukrycia spinnera po 10 sekundach i wyświetlenia zawartości -->
-    <script>
-        // Czekamy 2 sekundy przed ukryciem spinnera i pokazaniem zawartości
-        setTimeout(function() {
-            // Ukryj spinner z DOM-u
-            $('#loading-indicator').fadeOut(function() {
-                $(this).remove();  // Usuń spinner z DOM-u
-            });
-            // Pokaż zawartość strony
-            $('#content').removeClass('d-none').fadeIn();
-        }, 10000); // 2000 ms = 2 sekundy
-    </script>
+
 
 </body>
 </html>

@@ -5,24 +5,23 @@
     <meta content="width=device-width, initial-scale=1.0">
     <title>Survey 2</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/htmx.org@1.9.2"></script> <!-- HTMX -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script> <!-- SortableJS -->
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script> <!-- opcja potrzebna do sortowania w JS -->
     <style>
-        /* Stylizacja listy, wyrównanie do lewej i obramowanie */
         #sortable-list {
-            list-style-type: none;  /* Usunięcie domyślnych punktów listy */
-            padding: 0;  /* Usunięcie marginesu wokół listy */
+            list-style-type: none; 
+            padding: 0; 
         }
 
         .list-group-item {
-            border: 1px solid #ddd;  /* Obramowanie */
-            margin-bottom: 5px;  /* Odstęp między elementami */
-            text-align: left;  /* Wyrównanie tekstu do lewej */
-            padding: 10px;  /* Padding wokół tekstu */
-            background-color: #f9f9f9;  /* Tło elementu */
+            border: 1px solid #ddd;  
+            margin-bottom: 5px;  
+            text-align: left;  
+            padding: 10px;  
+            background-color: #f9f9f9; 
         }
 
-        /* Opcjonalnie dodanie stylu przy przeciąganiu */
+        /* styl przy przeciąganiu elementu */
         .list-group-item:active {
             background-color: #5cbc64;
         }
@@ -31,7 +30,7 @@
 <body>
     <!-- https://htmx.org/examples/sortable/#demo -->
     <h1>What are your needs?</h1>
-    <!-- Lista elementów, które będą sortowane -->
+    <!-- Lista do sortowania -->
     <ul id="sortable-list" class="list-group" hx-post="/save-order" hx-target="#sortable-list" hx-swap="outerHTML">
         <li class="list-group-item" data-id="1">
             <span>Better salary</span>
@@ -51,33 +50,17 @@
     </ul>
 
     <script>
-        // Inicjalizujemy SortableJS na naszej liście
+        // musimy zainicjować SortableJS na naszej liście
         const sortable = new Sortable(document.getElementById('sortable-list'), {
-            onEnd: function(evt) {
-                // Po zakończeniu sortowania wyślij zapytanie do serwera
-                const orderedIds = [...evt.from.children].map(item => item.getAttribute('data-id'));
-
-                // Wykonaj zapytanie do backendu (można użyć htmx lub fetch)
-                fetch('/save-order', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': '{{ csrf_token }}'  // Użyj odpowiedniego tokena CSRF, jeśli jest wymagany
-                    },
-                    body: JSON.stringify({ order: orderedIds })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Zapisano nowy porządek!', data);
-                })
-                .catch(error => {
-                    console.error('Błąd podczas zapisywania porządku', error);
-                });
-            }
         });
     </script>
 
     <button id="save-button" class="btn btn-success mt-3">Save Order</button>
+    <br>
+    <br>
+    <form action="{% url 'main_page' %}">
+        <button type="submit" class="btn btn-outline-dark">Main Page</button>
+    </form>
 
 </body>
 </html>
