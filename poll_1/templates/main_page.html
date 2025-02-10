@@ -7,6 +7,13 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         {% load static %}
         <link rel="icon" href="{% static 'images/tittle_logo.png' %}" type="image/x-icon"/>
+        <!-- HTMX link for rollower feature -->
+        <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+        <style>
+          .hidden{
+            display: none;
+          }
+        </style>
         
         <!-- STYLE FOR CAROUSEL -->
         <style>
@@ -33,6 +40,8 @@
     </head>
     <body>
       <!-- NAVBAR -->
+    <div id="content">
+    <p>
     <h1>MAIN PAGE</h1>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <nav class="navbar navbar-dark bg-dark fixed-top">
@@ -128,6 +137,8 @@
       </div>
       <br>
       <br>
+      </p>
+      <p class="hidden">
       <div class="row">
         <div class="col-sm-6 mb-3 mb-sm-0">
           <div class="card">
@@ -152,13 +163,25 @@
       </div>
       <br>
       <br>
+      </p>
+      <p class="hidden">
+      <br>
       <br>
       <center><p>Images used on the website are open source (unsplash.com). Artists: Frederik Lower, Guille Alvarez, Zac Durant, Glenn Carstens-Peters.</p></center>
       <br>
       <br>
       <br>
+      </p>
+    </div>
+
+      <button
+        hx-get="#content p.hidden:first"
+        hx-swap="outerHTML"
+        hx-on::after-request="if(!document.querySelector('hidden')) this.remove()">
+        Show more      
+      </button>
 
 
-
+    
     </body>
 </html>
