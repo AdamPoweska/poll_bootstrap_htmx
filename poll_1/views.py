@@ -13,6 +13,11 @@ from .models import SurveyOneResponses
 class MainPageView(TemplateView):
     template_name = 'main_page.html'
 
+
+class MainPagePlusOne(TemplateView):
+    template_name = 'main_page_plus_one.html'
+
+
 class SecondSurvey(TemplateView):
     template_name = 'quiz_2.html'
 

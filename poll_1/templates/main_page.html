@@ -8,15 +8,13 @@
         {% load static %}
         <link rel="icon" href="{% static 'images/tittle_logo.png' %}" type="image/x-icon"/>
         <!-- HTMX link for rollower feature -->
-        <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+        <script src="https://unpkg.com/htmx.org@1.9.6"></script>        
         <style>
+          /* Style for rollower-htmx */
           .hidden{
             display: none;
           }
-        </style>
-        
-        <!-- STYLE FOR CAROUSEL -->
-        <style>
+          /* STYLE FOR CAROUSEL */
           .carousel-control-prev-icon,
           .carousel-control-next-icon {
             filter: invert(100%);
@@ -40,148 +38,115 @@
     </head>
     <body>
       <!-- NAVBAR -->
-    <div id="content">
-    <p>
-    <h1>MAIN PAGE</h1>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <nav class="navbar navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="{% url 'main_page' %}">Home</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
-              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <div id="content">
+        <h1>MAIN PAGE</h1>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+            <nav class="navbar navbar-dark bg-dark fixed-top">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="{% url 'main_page' %}">Home</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                    <div class="offcanvas-header">
+                      <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
+                      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="{% url 'main_page' %}">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Survey list
+                          </a>
+                          <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="{% url 'quiz_1_question_1' %}">Survey 1</a></li>
+                            <li><a class="dropdown-item" href="{% url 'quiz_2' %}">Survey 2</a></li>
+                            <li>
+                              <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'quiz_1_results' %}">See responses for survey 1!</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+              <!-- CAROUSEL -->
+              <div id="carouselExampleFade" class="carousel slide carousel-fade">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                  <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                </div>
+                <div class="carousel-inner" style="height: 600px;">
+                  <div class="carousel-item active">
+                    <img src="{% static 'images/slide_1.png' %}" class="d-block w-100 h-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static 'images/slide_2.png' %}" class="d-block w-100 h-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static 'images/slide_3.png' %}" class="d-block w-100 h-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static 'images/slide_4.png' %}" class="d-block w-100 h-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+              <br>
+              <br>
+              <!-- CARDS-SURVEYS -->
+              <div class="row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <div class="card">
+                    <img src="{% static 'images/card_1.png' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Survey 1 - What motivates your employee?</h5>
+                      <p class="card-text">To be used in order to find out what is the most important feature in workplace.</p>
+                      <a href="{% url 'quiz_1_question_1' %}" class="btn btn-primary">Take survey!</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="card">
+                    <img src="{% static 'images/card_2.png' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Survey 2 - Employee's (or Maslow's) ladder of needs.</h5>
+                      <p class="card-text">Interactive survey to find aout what are current needs of your employees (Not finished).</p>
+                      <a href="{% url 'quiz_2' %}" class="btn btn-primary">Take survey!</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <br>
+            <br>
             </div>
-            <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{% url 'main_page' %}">Home</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Survey list
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a class="dropdown-item" href="{% url 'quiz_1_question_1' %}">Survey 1</a></li>
-                    <li><a class="dropdown-item" href="{% url 'quiz_2' %}">Survey 2</a></li>
-                    <li>
-                      <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="{% url 'quiz_1_results' %}">See responses for survey 1!</a></li>
-                  </ul>
-                </li>
-              </ul>
-              </form>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <!-- CAROUSEL -->
-      <div id="carouselExampleFade" class="carousel slide carousel-fade">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="2" aria-label="Slide 3"></button>
-          <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="3" aria-label="Slide 4"></button>
-        </div>
-        <div class="carousel-inner" style="height: 600px;">
-          <div class="carousel-item active">
-            <img src="{% static 'images/slide_1.png' %}" class="d-block w-100 h-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="{% static 'images/slide_2.png' %}" class="d-block w-100 h-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="{% static 'images/slide_3.png' %}" class="d-block w-100 h-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="{% static 'images/slide_4.png' %}" class="d-block w-100 h-100" alt="...">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-      <br>
-      <br>
-      <!-- CARDS-SURVEYS -->
-      <div class="row">
-        <div class="col-sm-6 mb-3 mb-sm-0">
-          <div class="card">
-            <img src="{% static 'images/card_1.png' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Survey 1 - What motivates your employee?</h5>
-              <p class="card-text">To be used in order to find out what is the most important feature in workplace.</p>
-              <a href="{% url 'quiz_1_question_1' %}" class="btn btn-primary">Take survey!</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card">
-            <img src="{% static 'images/card_2.png' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Survey 2 - Employee's (or Maslow's) ladder of needs.</h5>
-              <p class="card-text">Interactive survey to find aout what are current needs of your employees (Not finished).</p>
-              <a href="{% url 'quiz_2' %}" class="btn btn-primary">Take survey!</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <br>
-      </p>
-      <p class="hidden">
-      <div class="row">
-        <div class="col-sm-6 mb-3 mb-sm-0">
-          <div class="card">
-            <img src="{% static 'images/card_3.png' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Sky is the limit!</h5>
-              <p class="card-text">Open question survey - to find out what will motivate employee to go even beyond (WORK IN PROGRESS).</p>
-              <a href="#" class="btn btn-primary">Take survey!</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card">
-            <img src="{% static 'images/card_4.png' %}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Spread your arms!</h5>
-              <p class="card-text">Survey aiming to find out what encourages employees to speak up (WORK IN PROGRESS).</p>
-              <a href="#" class="btn btn-primary">Take survey!</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <br>
-      </p>
-      <p class="hidden">
-      <br>
-      <br>
-      <center><p>Images used on the website are open source (unsplash.com). Artists: Frederik Lower, Guille Alvarez, Zac Durant, Glenn Carstens-Peters.</p></center>
-      <br>
-      <br>
-      <br>
-      </p>
-    </div>
+        
 
-      <button
-        hx-get="#content p.hidden:first"
-        hx-swap="outerHTML"
-        hx-on::after-request="if(!document.querySelector('hidden')) this.remove()">
-        Show more      
-      </button>
+          <div style="display: flex; justify-content: center; width: 100%; margin-top: 20px;">
+            <button
+            hx-get="{% url 'main_page_plus_one' %}"
+            hx-target="#content"
+            hx-swap="beforeend"
+            hx-on::after-request="this.remove()"
+            class="btn btn-primary">
+            Show more
+            </button>
+          </div>
 
-
-    
     </body>
 </html>
