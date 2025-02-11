@@ -18,6 +18,19 @@
         opacity: 0;
     }
 
+    #show-more-container {
+        visibility: hidden;
+        margin-top: 20px;
+        display: flex;
+        justify-content: left;
+        width: 100%;
+    }
+
+    #show-more-button {
+        width: 100%;
+        max-width: 500px;
+    }
+
     </style>
 
 <body>
@@ -27,25 +40,25 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" 
-            class="fade-me-out"
+            class="btn btn-primary fade-me-out"
             hx-post="{% url 'quiz_1_question_2' %}"
             hx-trigger="click"
             hx-swap="none"
-            hx-on::after-request="this.classList.add('hidden'); setTimeout(() => this.remove(), 1000)">
+            hx-on="htmx:afterRequest: this.classList.add('hidden'); setTimeout(() => { this.remove(); document.getElementById('show-more-container').style.visibility = 'visible'; }, 1000)">
             Submit
         </button>
     </form>
     </div>
 
-    <div style="display: flex; justify-content: center; width: 100%; margin-top: 20px;">
+    <div id="show-more-container">
         <button
+        id="show-more-button"
         hx-get="{% url 'quiz_1_question_2' %}"
         hx-target="#content"
         hx-swap="innerHTML"
-        hx-on::after-request="this.remove()"
-        class="btn btn-success"
-        style="width: 100%; max-width: 500px;">
-        Show more
+        hx-on="htmx:afterRequest: this.remove()"
+        class="btn btn-success">
+        Next Question
         </button>
       </div>
 
