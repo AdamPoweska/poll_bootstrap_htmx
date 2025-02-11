@@ -24,7 +24,7 @@ class SecondSurvey(TemplateView):
 class QuestionA(FormView):
     template_name = 'quiz_1_question_1.html'
     form_class = QuizOneQuestionOne
-    success_url = reverse_lazy('quiz_1_question_2')
+    # success_url = reverse_lazy('quiz_1_question_2')
 
     # zapisanie do modelu i bazy danych, forms nie zapisują do bazy danych - tylko modele
     def form_valid(self, form):
