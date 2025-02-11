@@ -5,13 +5,64 @@
     <meta content="width=device-width, initial-scale=1.0">
     <title>Survey 1</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
 </head>
+
+<style>
+    .fade-me-out {
+        opacity: 1;
+        transition: opacity 1s ease-out;
+    }
+
+    .fade-me-out.hidden {
+        opacity: 0;
+    }
+
+    #show-more-container {
+        visibility: hidden;
+        margin-top: 20px;
+        display: flex;
+        justify-content: left;
+        width: 100%;
+    }
+
+    #show-more-button {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    </style>
+
 <body>
+    <div id="content">
     <h1>What motivates you to work?</h1>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="submit" 
+            class="btn btn-primary fade-me-out"
+            hx-post="{% url 'quiz_1_question_3' %}"
+            hx-trigger="click"
+            hx-swap="none"
+            hx-on="htmx:afterRequest: this.classList.add('hidden'); setTimeout(() => { this.remove(); document.getElementById('show-more-container').style.visibility = 'visible'; }, 1000)">
+            Submit
+        </button>
     </form>
+    </div>
+
+    <div id="show-more-container">
+        <button
+        id="show-more-button"
+        hx-get="{% url 'quiz_1_question_3' %}"
+        hx-target="#content"
+        hx-swap="innerHTML"
+        hx-on="htmx:afterRequest: this.remove()"
+        class="btn btn-success">
+        Next Question
+        </button>
+      </div>
+
+
+
 </body>
 </html>
