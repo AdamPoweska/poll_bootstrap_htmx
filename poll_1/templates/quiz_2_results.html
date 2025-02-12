@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0">
+    <title>Survey</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script> -->
+    <style>
+        #sortable-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .list-group-item {
+            border: 1px solid #ddd;
+            margin-bottom: 5px;
+            text-align: left;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .list-group-item:active {
+            background-color: #5cbc64;
+        }
+    </style>
+</head>
+<body>
+    <h1>What are your needs?</h1>
+
+    <form id="needs-form" hx-post="{% url 'quiz_2_results' %}" hx-target="#sortable-list" hx-params="order={{ order }}">
+        {% csrf_token %}
+        <ul id="sortable-list" class="list-group">
+                {% for need in needs %}
+                    <li class="list-group-item" data-id="{{ need.id }}">
+                        <span>{{ need.name }} {{ need.points }}</span>
+                    </li>
+                {% endfor %}
+        </ul>
+        <button id="save-button" class="btn btn-success mt-3" type="submit">Submit</button>
+    </form>
+    
+
+
+</body>
+</html>

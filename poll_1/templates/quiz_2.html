@@ -5,62 +5,64 @@
     <meta content="width=device-width, initial-scale=1.0">
     <title>Survey 2</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script> <!-- opcja potrzebna do sortowania w JS -->
-    <style>
-        #sortable-list {
-            list-style-type: none; 
-            padding: 0; 
-        }
-
-        .list-group-item {
-            border: 1px solid #ddd;  
-            margin-bottom: 5px;  
-            text-align: left;  
-            padding: 10px;  
-            background-color: #f9f9f9; 
-        }
-
-        /* styl przy przeciąganiu elementu */
-        .list-group-item:active {
-            background-color: #5cbc64;
-        }
-    </style>
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
 </head>
+
+<style>
+    .fade-me-out {
+        opacity: 1;
+        transition: opacity 1s ease-out;
+    }
+
+    .fade-me-out.hidden {
+        opacity: 0;
+    }
+
+    #show-more-container {
+        visibility: hidden;
+        margin-top: 20px;
+        display: flex;
+        justify-content: left;
+        width: 100%;
+    }
+
+    #show-more-button {
+        width: 100%;
+        max-width: 500px;
+    }
+
+    </style>
+
 <body>
-    <!-- https://htmx.org/examples/sortable/#demo -->
+    <div id="content">
     <h1>What are your needs?</h1>
-    <!-- Lista do sortowania -->
-    <ul id="sortable-list" class="list-group" hx-post="/save-order" hx-target="#sortable-list" hx-swap="outerHTML">
-        <li class="list-group-item" data-id="1">
-            <span>Better salary</span>
-        </li>
-        <li class="list-group-item" data-id="2">
-            <span>Boss recognition</span>
-        </li>
-        <li class="list-group-item" data-id="3">
-            <span>No overtime</span>
-        </li>
-        <li class="list-group-item" data-id="4">
-            <span>Nice co-workers</span>
-        </li>
-        <li class="list-group-item" data-id="5">
-            <span>Good Coffee</span>
-        </li>
-    </ul>
-
-    <script>
-        // musimy zainicjować SortableJS na naszej liście
-        const sortable = new Sortable(document.getElementById('sortable-list'), {
-        });
-    </script>
-
-    <button id="save-button" class="btn btn-success mt-3">Save Order</button>
-    <br>
-    <br>
-    <form action="{% url 'main_page' %}">
-        <button type="submit" class="btn btn-outline-dark">Main Page</button>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" 
+            class="btn btn-primary fade-me-out"
+            hx-post="{% url 'quiz_2_results' %}"
+            hx-trigger="click"
+            hx-swap="none"
+            hx-on="htmx:afterRequest: this.classList.add('hidden'); setTimeout(() => { this.remove(); document.getElementById('show-more-container').style.visibility = 'visible'; }, 1000)">
+            Submit
+        </button>
     </form>
+    </div>
+
+    <div id="show-more-container">
+        <button
+        id="show-more-button"
+        hx-get="{% url 'quiz_2_results' %}"
+        hx-target="#content"
+        hx-swap="innerHTML"
+        hx-on="htmx:afterRequest: this.remove()"
+        class="btn btn-success">
+        Submit
+        </button>
+      </div>
+
+
 
 </body>
 </html>

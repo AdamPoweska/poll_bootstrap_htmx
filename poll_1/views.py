@@ -5,9 +5,12 @@ from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 from django.db.models import Count
 from collections import defaultdict
+from django.http import JsonResponse
+
+import json
 
 from .forms import *
-from .models import SurveyOneResponses
+from .models import *
 
 
 class MainPageView(TemplateView):
